@@ -73,7 +73,12 @@ public class AdminController extends BaseController{
 	 */
 	@RequestMapping(value = "/signout")
 	String signOut() throws ServletException {
-		request.logout();
+		httpSession.invalidate();
 		return "redirect:/admin/login";
+	}
+	
+	@RequestMapping(value = "/home")
+	String home(){
+		return "/admin/home";
 	}
 }

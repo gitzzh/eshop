@@ -1,56 +1,6 @@
-body {
-	font-size:13px;
+.none{
+	display: none;
 }
-
-input[type="text"] {
-	font-size:12px;
-	width: 80px;
-    vertical-align: middle;
-    height: 26px;
-    line-height: 1.5;
-}
-
-input.input-medium {
-	width: 150px;
-}
-
-input.input-large {
-	width: 210px;
-}
-
-label {
-	font-size:12px;
-}
-
-select {
-	font-size:12px;
-	height: 26px;
-	vertical-align: middle;
-}
-
-h3.smaller {
-    font-size: 16px;
-}
-
-.page-content {
-	padding-bottom: 16px;
-}
-
-.footer .footer-inner .footer-content {
- 	line-height: 12px;
- }
- 
-.header {
-	margin-top:0px;
-}
-
-.btn {
-    border-width: 4px;
-    font-size: 13px;
-    line-height: 1.39;
-    padding: 1px 9px;
-}
-
 .table {
 	width: auto;
 }
@@ -59,15 +9,15 @@ h3.smaller {
     padding: 6px 8px;
 }
 
-.table > tbody > tr > th {
+
+
+/* .table > tbody > tr > th {
 	background-color: #f9f9f9;
 	white-space:nowrap;
 	font-weight:normal;
-}
+} */
 
-.pagination {
-	margin-top: 10px;
-}
+
 
 .has-extends {
     position: relative;
@@ -106,15 +56,5 @@ h3.smaller {
     width: 9px;
 }
 
-.extends-info > h4 {
-	font-size:14px;
-	font-weight:bold;
-}
 
-.modal-header {
-	padding: 10px 15px;
-}
 
-.modal-header .close {
-    font-size: 16px;
-}

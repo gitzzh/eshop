@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.jolbox.bonecp.BoneCPDataSource;
 
 /**
- * Spring 基础配置
+ * Spring 鍩虹閰嶇疆
  */
 @Configuration
 @EnableTransactionManagement
@@ -24,21 +24,21 @@ import com.jolbox.bonecp.BoneCPDataSource;
 public class RootConfig {
 
     /**
-     * 数据源
+     * 鏁版嵁婧�
      * @return
      */
     @Bean
     public DataSource dataSource() {
         BoneCPDataSource dataSource = new BoneCPDataSource();
         dataSource.setDriverClass("com.mysql.jdbc.Driver");
-        dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/test");
+        dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/eshop");
         dataSource.setUsername("root");
         dataSource.setPassword("");
         return  dataSource;
     }
 
     /**
-     * 配置sessionFactory
+     * 閰嶇疆sessionFactory
      *
      * @param dataSource
      * @return
@@ -70,7 +70,7 @@ public class RootConfig {
     }
 
     /**
-     * 事务管理器
+     * 浜嬪姟绠＄悊鍣�
      *
      * @param sessionFactory
      * @return
