@@ -6,6 +6,7 @@ seajs.config({
 		 "bootstrap.min":"public/js/bootstrap.min.js",
 		 "bootstrap-datepicker.min":"public/js/bootstrap-datepicker.min.js",
 		 "bootstrap-datepicker.zh-CN":"public/js/bootstrap-datepicker.zh-CN.js",
+		 "ace-extra.min" : "public/js/ace-extra.min.js",
 		 "ace.min":"public/js/ace.min.js",
 		 "ace-elements.min":"public/js/ace-elements.min.js"
     },  

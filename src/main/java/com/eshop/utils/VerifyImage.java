@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 public class VerifyImage {
 	// 图片的宽度。
-	private int width = 160;
+	private int width = 100;
 	// 图片的高度。
 	private int height = 40;
 	// 验证码字符个数
@@ -205,8 +205,7 @@ public class VerifyImage {
 	}
 
 	// 使用方法
-	public void getCode3(HttpServletRequest req, HttpServletResponse response,
-			HttpSession session) throws IOException {
+	public void getCode3(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 设置响应的类型格式为图片格式
 		response.setContentType("image/jpeg");
 		// 禁止图像缓存。
@@ -214,9 +213,9 @@ public class VerifyImage {
 		response.setHeader("Cache-Control", "no-cache");
 		response.setDateHeader("Expires", 0);
 
-		VerifyImage vCode = new VerifyImage(100, 30, 4, 10);
-		session.setAttribute("code", vCode.getCode());
-		vCode.write(response.getOutputStream());
+		//VerifyImage vCode = new VerifyImage(100, 30, 4, 10);
+		request.getSession().setAttribute("code", this.getCode());
+		this.write(response.getOutputStream());
 	}
 
 }
