@@ -8,7 +8,7 @@
 	<dependencies>
 		<!-- <dependency> <groupId>com.thoughtworks.xstream</groupId> <artifactId>xstream</artifactId> 
 			<version>1.4.8</version> </dependency> -->
-		<dependency>hhh
+		<dependency>hhhnnn
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2</version>
