@@ -12,7 +12,7 @@
 		<script>
 			seajs.use("seajs/amain");
 		</script>
-	</head>
+	</head> 
 
 	<body class="no-skin">
 		<!-- #section:basics/navbar.layout -->
