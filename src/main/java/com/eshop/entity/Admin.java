@@ -51,12 +51,24 @@ public class Admin extends StatefulEntity {
 	 */
 	@Column(name = "operate_password", length = 100)
 	private String operatePassword;
+	
+	/**
+	 * 操作密码加密密钥
+	 */
+	@Column(name = "operate_password_salt", length = 100)
+	private String operatePasswordSalt;
 
 	/**
 	 * 真实名称
 	 */
 	@Column(name = "real_name", length = 100)
 	private String realName;
+	
+	/**
+	 * 邮箱
+	 */
+	@Column(name = "email", length = 100)
+	private String email;
 
 
 
@@ -107,6 +119,22 @@ public class Admin extends StatefulEntity {
 	public void setOperatePassword(String operatePassword) {
 		this.operatePassword = operatePassword;
 	}
-	
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getOperatePasswordSalt() {
+		return operatePasswordSalt;
+	}
+
+	public void setOperatePasswordSalt(String operatePasswordSalt) {
+		this.operatePasswordSalt = operatePasswordSalt;
+	}
+	
+	
 }

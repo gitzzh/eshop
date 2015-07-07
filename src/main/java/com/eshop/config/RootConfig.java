@@ -34,9 +34,6 @@ public class RootConfig {
         dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/eshop");
         dataSource.setUsername("root");
         dataSource.setPassword("");
-       /* dataSource.setJdbcUrl("jdbc:mysql://sqld.duapp.com:4050/JKUdkDEivGmKoETPdffW");
-        dataSource.setUsername("02e5555b5d8a482ca5f6e4818f03c3cb");
-        dataSource.setPassword("08df26f0d3a2466cb532e44d3e9fc3bd");*/
         return  dataSource;
     }
 
