@@ -46,7 +46,7 @@ public class DispatcherConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-    	registry.addInterceptor(new PassportInterceptor());
+    	//registry.addInterceptor(new PassportInterceptor());
         super.addInterceptors(registry);
     }
 
