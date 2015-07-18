@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "product_type")
-public class ProductType extends StatefulEntity {
+public class ProductType implements BaseEntity {
 
 	/**
 	 * SID
@@ -30,17 +30,26 @@ public class ProductType extends StatefulEntity {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "product_type_id")
-	private Integer productTypeId;
+	@Column(name = "id")
+	private Integer id;
+	
+	/**
+	 * 父ID
+	 */
+	@Column(name = "parent_id")
+	private Integer parentId;
 	
 	/**
 	 * 产品名称
 	 */
-	@Column(name = "product_type_name", length = 100)
-	private String productTypeName;
+	@Column(name = "name", length = 100)
+	private String name;
 
-	@Column(name = "parent_id")
-	private Integer parentId;
+	/**
+	 * 产品参数
+	 */
+	@Column(name = "params",columnDefinition = "LONGTEXT")
+	private String params;
 	
 	 /**
 	 * 产品集合
@@ -48,20 +57,20 @@ public class ProductType extends StatefulEntity {
     @OneToMany(mappedBy = "productType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Product> products;
 
-	public Integer getProductTypeId() {
-		return productTypeId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setProductTypeId(Integer productTypeId) {
-		this.productTypeId = productTypeId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getProductTypeName() {
-		return productTypeName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductTypeName(String productTypeName) {
-		this.productTypeName = productTypeName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Integer getParentId() {
@@ -79,6 +88,15 @@ public class ProductType extends StatefulEntity {
 	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
+
+	public String getParams() {
+		return params;
+	}
+
+	public void setParams(String params) {
+		this.params = params;
+	}
+
 	
 	
 

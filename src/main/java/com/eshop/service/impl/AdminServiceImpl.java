@@ -8,7 +8,7 @@ import com.eshop.entity.Admin;
 import com.eshop.service.AdminService;
 
 /**
- * Created by Ash on 2015/5/22.
+ * Created by zhouzh on 2015/7/18.
  */
 @Transactional
 public class AdminServiceImpl extends BaseServiceImpl<Admin, Integer> implements AdminService {

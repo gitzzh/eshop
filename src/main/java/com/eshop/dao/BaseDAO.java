@@ -8,7 +8,7 @@ import org.hibernate.HibernateException;
 
 /**
  * 基础查询接口
- * Created by Ash on 2015/5/20.
+ * Created by zhouzh on 2015/7/18.
  */
 public interface BaseDAO<T, ID extends Serializable> {
 

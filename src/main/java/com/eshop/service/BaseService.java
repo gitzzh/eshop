@@ -7,7 +7,9 @@ import java.util.Map;
 import com.eshop.utils.page.ListInfo;
 
 
-
+/**
+ * Created by zhouzh on 2015/7/18.
+ */
 public interface BaseService<T, ID extends Serializable> {
 
 	/**
