@@ -8,7 +8,8 @@ seajs.config({
 		 "bootstrap-datepicker.zh-CN":"public/js/bootstrap-datepicker.zh-CN.js",
 		 "ace-extra.min" : "public/js/ace-extra.min.js",
 		 "ace.min":"public/js/ace.min.js",
-		 "ace-elements.min":"public/js/ace-elements.min.js"
+		 "ace-elements.min":"public/js/ace-elements.min.js",
+		 "fuelux.tree":"plugins/fuelux/fuelux.tree.js"
     },  
     preload: ["jquery"],
     map: [

@@ -22,12 +22,23 @@ public class ProductManageController extends BaseController {
 	@Autowired ProductTypeService productTypeService;
 	
 	/**
+	 * 去产品类型管理页面
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/typemanage")
+	String typeManage() {
+		
+		return "product/typemanage";
+	}
+	
+	
+	/**
 	 * 去产品类型输入页面
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value = "/producttypeinput")
-	@ResponseBody
 	String productTypeInput(Integer id,Map<String, Object> model) {
 		if(id != null){
 			model.put("productType", productTypeService.searchById(id));
@@ -57,7 +68,11 @@ public class ProductManageController extends BaseController {
 		}
 		productType.setName(name);
 		productType.setParams(params);
-		productType.setParentId(parentId);
+		if(parentId != null){
+			ProductType parent = new ProductType();
+			parent.setParent(parent);
+			productType.setParent(parent);
+		}
 		productTypeService.saveOrUpdate(productType);
 		status = 1;
 		Map<String, Object> model = new HashMap<String, Object>();
