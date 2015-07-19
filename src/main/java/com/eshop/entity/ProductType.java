@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,8 +38,8 @@ public class ProductType implements BaseEntity {
 	/**
 	 * 父ID
 	 */
-	@Column(name = "parent_id")
-	private Integer parentId;
+	/*@Column(name = "parent_id")
+	private Integer parentId;*/
 	
 	/**
 	 * 产品名称
@@ -50,6 +52,13 @@ public class ProductType implements BaseEntity {
 	 */
 	@Column(name = "params",columnDefinition = "LONGTEXT")
 	private String params;
+	
+	/**
+	 * 父对象
+	 */
+	@ManyToOne
+	@JoinColumn(name = "parent_id")
+	private ProductType parent;
 	
 	 /**
 	 * 产品集合
@@ -73,14 +82,6 @@ public class ProductType implements BaseEntity {
 		this.name = name;
 	}
 
-	public Integer getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
-	}
-
 	public Set<Product> getProducts() {
 		return products;
 	}
@@ -95,6 +96,14 @@ public class ProductType implements BaseEntity {
 
 	public void setParams(String params) {
 		this.params = params;
+	}
+
+	public ProductType getParent() {
+		return parent;
+	}
+
+	public void setParent(ProductType parent) {
+		this.parent = parent;
 	}
 
 	
