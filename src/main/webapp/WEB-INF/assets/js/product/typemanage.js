@@ -15,10 +15,11 @@ define(function(require, exports, module) {
             folderSelect: false  
        }); */
 		
-		var sampleData = initiateDemoData();//see below
+		var sampleData = remoteDataSource; //initiateDemoData();//see below
 
 		$('#tree1').ace_tree({
-			dataSource: sampleData['dataSource1'],
+			//dataSource: sampleData['dataSource1'],
+			dataSource: remoteDataSource,
 			multiSelect: false,
 			cacheItems: true,
 			folderSelect:true,
@@ -36,32 +37,34 @@ define(function(require, exports, module) {
 	var remoteDataSource = function(options, callback) {
 		var parent_id = null
 		if (!('text' in options || 'type' in options)) {
-			parent_id = 0; //load first level data  
+			parent_id = null; //load first level data  
 		} else if ('type' in options && options['type'] == 'folder') { //it has children  
-			if ('additionalParameters' in options && 'children' in options.additionalParameters)  
-			     parent_id = options.additionalParameters['id' ]  
+			if ('id' in options)  
+			     parent_id = options['id' ]  
 		}
 
-		if (parent_id !== null) {
-			$.ajax({
-				url : "../adminproduct/loadtype",
-				data : {
-					parentId : parent_id
-				},
-				type : 'POST',
-				dataType : 'json',
-				success : function(response) {
-					if (response.status == "OK")
-						callback({
-							data : response.data
+		$.ajax({
+			url : "../adminproduct/loadtype",
+			data : {
+				parentId : parent_id
+			},
+			type : 'POST',
+			dataType : 'json',
+			success : function(response) {
+				if (response.status == 1)
+					callback({
+						data : $.map(response.data,function(object){
+							object["type"] = object["hasChildren"] ? "folder" : "item";
+							object["additionalParameters"] = {};
+							return object;
 						})
-				},
-				error : function(response) {
-					// console.log(response);
-				}
-			})
+					})
+			},
+			error : function(response) {
+				// console.log(response);
+			}
+		})
 
-		}
 	}
 	
 	function initiateDemoData(){

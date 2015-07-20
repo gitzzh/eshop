@@ -1,6 +1,7 @@
 package com.eshop.controller.admin;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
@@ -14,12 +15,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.eshop.controller.BaseController;
 import com.eshop.entity.ProductType;
 import com.eshop.service.ProductTypeService;
+import com.eshop.vo.ProductTypeVO;
 
 
 @Controller
 @RequestMapping("/adminproduct")
 public class ProductManageController extends BaseController {
 	@Autowired ProductTypeService productTypeService;
+	
+	
+	
+	/**
+	 * 去产品类型管理页面
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/loadtype")
+	@ResponseBody
+	Object loadType(Integer parentId) {
+		Map<String, Object> model = new HashMap<>();
+		List<ProductTypeVO> productTypeVOs = productTypeService.getProductTypeVOByParentId(parentId);
+		model.put("status", 1);
+		model.put("data", productTypeVOs);
+		return model;
+	}
+	
 	
 	/**
 	 * 去产品类型管理页面

@@ -65,6 +65,12 @@ public class ProductType implements BaseEntity {
 	 */
     @OneToMany(mappedBy = "productType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Product> products;
+    
+    /**
+     * 产品集合
+     *//*
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ProductType> productTypes;*/
 
 	public Integer getId() {
 		return id;
@@ -105,6 +111,9 @@ public class ProductType implements BaseEntity {
 	public void setParent(ProductType parent) {
 		this.parent = parent;
 	}
+
+
+	
 
 	
 	
