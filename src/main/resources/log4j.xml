@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+    <appender name="ERRORFILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="ERROR"></param>
+        <param name="File" value="${eshop.root}/WEB-INF/log/error.log"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="[framework] %d - %c -%-4r [%t] %-5p %c %x - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="ROLLING_FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="FATAL"></param>
+        <param name="File" value="${eshop.root}/WEB-INF/log/info.log"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="[framework] %d - %c -%-4r [%t] %-5p %c %x - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="threshold" value="debug"></param>
+        <param name="Target" value="System.out"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="[start]%d{DATE}[DATE]%n%p[PRIORITY]%n%x[NDC]%n%t[THREAD] n%c[CATEGORY]%n%m[MESSAGE]%n%n" />
+        </layout>
+    </appender>
+
+    <appender name="File" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${eshop.root}/WEB-INF/log/clog.log"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[framework] %d - %c -%-4r [%t] %-5p %c %x - %m%n" />
+        </layout>
+        <!--过滤器设置输出的级别 -->
+        <filter class="com.huiyin.store.log.CustomerLogFilter">
+            <param name="levelMin" value="CUSTOMER" />
+            <param name="levelMax" value="CUSTOMER" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <appender name="DAOFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${eshop.root}/WEB-INF/log/daolog.log"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[framework] %d - %c -%-4r [%t] %-5p %c %x - %m%n" />
+        </layout>
+        <!--过滤器设置输出的级别 -->
+        <filter class="com.huiyin.store.log.CustomerLogFilter">
+            <param name="levelMin" value="DAO" />
+            <param name="levelMax" value="DAO" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <appender name="SERVICEFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${eshop.root}/WEB-INF/log/servicelog.log"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[framework] %d - %c -%-4r [%t] %-5p %c %x - %m%n" />
+        </layout>
+        <!--过滤器设置输出的级别 -->
+        <filter class="com.huiyin.store.log.CustomerLogFilter">
+            <param name="levelMin" value="SERVICE" />
+            <param name="levelMax" value="SERVICE" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <!-- 根logger的设置-->
+    <root>
+        <level value="ERROR"></level>
+        <appender-ref ref="ERRORFILE"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="File"/>
+        <appender-ref ref="DAOFile"/>
+        <appender-ref ref="SERVICEFile"/>
+    </root>
+</log4j:configuration>  

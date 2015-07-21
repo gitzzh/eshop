@@ -10,7 +10,6 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class VerifyImage {
 	// 图片的宽度。
@@ -127,7 +126,7 @@ public class VerifyImage {
 
 	/**
 	 * 产生随机字体
-	 */
+	 *//*
 	private Font getFont(int size) {
 		Random random = new Random();
 		Font font[] = new Font[5];
@@ -189,7 +188,7 @@ public class VerifyImage {
 
 		}
 
-	}
+	}*/
 
 	public void write(OutputStream sos) throws IOException {
 		ImageIO.write(buffImg, "png", sos);
