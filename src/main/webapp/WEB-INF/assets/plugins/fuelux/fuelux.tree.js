@@ -399,9 +399,15 @@
 		//获取选中的元素,返回第index个
 		getSelectedByIndex:function(index,callback){
 			var $all = this.$element.find('.tree-selected');
-			var $curEL = $all.eq(index);
-			$curEL.is(".tree-branch-header") && ($curEL = $curEL.parent());
-			callback($curEl.data(),$curEl[0]);
+			var indexEl = null;
+			var indexTreeData = null;
+			var $index = $all.eq(index);
+			if($index.length){
+				$index.is(".tree-branch-header") && ($index = $index.parent());
+				indexTreeData = $index.data();
+				indexEl = $index[0];
+			}
+			callback.apply(this,[indexTreeData,indexEl]);
 		},
 		//获取所有选中的元素
 		getSelecteds:function(callback){
@@ -418,16 +424,107 @@
 				datas.push($this.data());
 				els.push(_this);
 			});
-			callback(datas,els);
+			callback.apply(this,[datas,els]);
 		},
-		add:function(parentEl,treeData){
-			
+		add:function($el,treeData){
+			if($el === null)
+				this.append(null,treeData);
+			else{
+				if($el.is(".tree-branch")){
+					if($el.find('.'+$.trim(this.options['open-icon'].replace(/(\s+)/g, '.'))).length){
+						this.append($el,treeData);
+					}else if($el.find('.'+$.trim(this.options['close-icon'].replace(/(\s+)/g, '.'))).length){
+						$el.find(".tree-branch-children").children().length && this.append($el,treeData);
+						$el.find(".icon-folder").trigger("click.fu.tree")
+					}
+				}else if($el.is(".tree-item")){
+					var $parent = $el.parent();
+					var data = $el.data();
+					var $entity;
+					$entity = this.$element.find('[data-template=treebranch]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+					$entity.find('.tree-branch-name > .tree-label').html(data.text || data.name);
+					data["type"] = "folder"
+					$entity.data(data);
+					$el.replaceWith($entity);
+					this.append($entity,treeData);
+					$entity.find(".icon-folder").trigger("click.fu.tree")
+				}
+			}
 		},
 		remove:function(parentEl,treeData){
+			//document.a
+		},
+		update:function($el,newData){
 			
 		},
-		update:function(parentEl,oldTreeData,newTreeData){
-			
+		append:function($parent,treeData){
+			var self =this;
+			$parent = $parent || self.$element;
+			var $entity;
+			if(treeData.type === 'folder') {
+				$entity = self.$element.find('[data-template=treebranch]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+				$entity.data(treeData);
+				$entity.find('.tree-branch-name > .tree-label').html(treeData.text || treeData.name);
+				
+				//ACE
+				var header = $entity.find('.tree-branch-header');
+
+				if('icon-class' in value)
+					header.find('i').addClass(value['icon-class']);
+				
+				if('additionalParameters' in treeData
+					&& 'item-selected' in treeData.additionalParameters 
+						&& treeData.additionalParameters['item-selected'] == true) {
+						setTimeout(function(){header.trigger('click')}, 0);
+				}
+				
+			} else if (treeData.type === 'item') {
+				$entity = self.$element.find('[data-template=treeitem]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+				$entity.find('.tree-item-name > .tree-label').html(treeData.text || treeData.name);
+				$entity.data(treeData);
+				
+				//ACE
+				if('additionalParameters' in treeData
+					&& 'item-selected' in treeData.additionalParameters 
+						&& treeData.additionalParameters['item-selected'] == true) {
+						$entity.addClass ('tree-selected');
+						$entity.find('i').removeClass(self.options['unselected-icon']).addClass(self.options['selected-icon']);
+						//$entity.closest('.tree-folder-content').show();
+				}
+			}
+			// add attributes to tree-branch or tree-item
+			var attr = treeData['attr'] || treeData.dataAttributes || [];
+			$.each(attr, function(key, value) {
+				switch (key) {
+					case 'cssClass':
+					case 'class':
+					case 'className':
+						$entity.addClass(value);
+						break;
+					
+					// allow custom icons
+					case 'data-icon':
+						$entity.find('.icon-item').removeClass().addClass('icon-item ' + value);
+						$entity.attr(key, value);
+						break;
+
+					// ARIA support
+					case 'id':
+						$entity.attr(key, value);
+						$entity.attr('aria-labelledby', value + '-label');
+						$entity.find('.tree-branch-name > .tree-label').attr('id', value + '-label');
+						break;
+
+					// id, style, data-*
+					default:
+						$entity.attr(key, value);
+						break;
+				}
+			});
+
+			// add child nodes
+			$parent.is(".tree") && $parent.append($entity);
+			$parent.is(".tree") || $parent.find('.tree-branch-children:eq(0)').append($entity);
 		}
 	};
 

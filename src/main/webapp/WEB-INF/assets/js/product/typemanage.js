@@ -2,18 +2,19 @@ define(function(require, exports, module) {
 	require('seajs/amain');
 	require('fuelux.tree');
 	$(function(event){
-		/*$( '#treeview' ).ace_tree({  
-            dataSource: remoteDateSource ,  
-            multiSelect: true ,  
-            loadingHTML: '<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>',  
-             'open-icon' : 'ace-icon tree-minus',  
-             'close-icon' : 'ace-icon tree-plus',  
-             'selectable' : true ,  
-             'selected-icon' : 'ace-icon fa fa-check',  
-             'unselected-icon' : 'ace-icon fa fa-times',  
-            cacheItems: true ,  
-            folderSelect: false  
-       }); */
+		$("#select_but").click(function(e){
+			$('#tree1').tree("getSelectedByIndex",0,function(treeData,el){
+				treeData && alert(treeData.id);
+			});
+		});
+		
+		$("#add_but").click(function(e){
+			$('#tree1').tree("getSelectedByIndex",0,function(treeData,el){
+				//if(el != null){
+					this.add(el == null ? null : $(el) ,{text: 'Cats', type: 'item'});
+				//}
+			});
+		});
 		
 		var sampleData = remoteDataSource; //initiateDemoData();//see below
 

@@ -41,33 +41,20 @@
 
 						<div class="row">
 							<div class="col-sm-6">
-
-
+							<button id="select_but">show selected Item</button>
+							<button id="add_but">add Item</button>
 							<div class="widget-box widget-color-blue2">
 								<div class="widget-header">
 									<h4 class="widget-title lighter smaller">Choose Categories</h4>
 								</div>
-
 								<div class="widget-body">
 									<div class="widget-main padding-8">
 										<ul id="tree1"></ul>
-										 <!-- <div id= "treeview" class ="tree" ></div>  
-                       <div class ="hr" ></div>  
-                       <button id= "submit-button" type ="button" class= "btn btn-sm btn-primary pull-right">  
-                           <i class ="ace-icon fa fa-check"></i >  
-                          Submit  
-                       </button>   -->
 									</div>
 								</div>
 							</div>
-
-							
-
-
-
-
-						</div><!-- /.col -->
-						</div><!-- /.row -->
+							</div><!-- /.col -->
+					</div><!-- /.row -->
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
