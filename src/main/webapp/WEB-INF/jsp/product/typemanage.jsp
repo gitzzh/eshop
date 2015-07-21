@@ -43,6 +43,7 @@
 							<div class="col-sm-6">
 							<button id="select_but">show selected Item</button>
 							<button id="add_but">add Item</button>
+							<button id="remove_but">remove Item</button>
 							<div class="widget-box widget-color-blue2">
 								<div class="widget-header">
 									<h4 class="widget-title lighter smaller">Choose Categories</h4>

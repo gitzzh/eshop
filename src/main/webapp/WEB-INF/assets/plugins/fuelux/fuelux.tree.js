@@ -440,19 +440,40 @@
 				}else if($el.is(".tree-item")){
 					var $parent = $el.parent();
 					var data = $el.data();
-					var $entity;
-					$entity = this.$element.find('[data-template=treebranch]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
-					$entity.find('.tree-branch-name > .tree-label').html(data.text || data.name);
 					data["type"] = "folder"
-					$entity.data(data);
+					var $entity = this.createElement(data);
 					$el.replaceWith($entity);
 					this.append($entity,treeData);
 					$entity.find(".icon-folder").trigger("click.fu.tree")
 				}
 			}
 		},
-		remove:function(parentEl,treeData){
-			//document.a
+		remove:function($el,treeData){
+			if($el && $el.length){
+				$parent = $el.parent();
+				$el.remove();
+				if(!$parent.is(".tree") && !$parent.children().length){
+					var $folder = $parent.parent();
+					var data = $folder.data();
+					data["type"] = "item";
+					$folder.replaceWith(this.createElement(data));
+				}
+			}
+		},
+		createfolder:function(data){
+			
+		},
+		createElement:function(data){
+			var $entity;
+			if(data["type"] === "item"){
+				$entity = this.$element.find('[data-template=treeitem]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+				$entity.find('.tree-item-name > .tree-label').html(data.text || data.name);
+			}else if(data["type"] === "folder"){
+				$entity = this.$element.find('[data-template=treebranch]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+				$entity.find('.tree-branch-name > .tree-label').html(data.text || data.name);
+			}
+			$entity.data(data);
+			return $entity;
 		},
 		update:function($el,newData){
 			
