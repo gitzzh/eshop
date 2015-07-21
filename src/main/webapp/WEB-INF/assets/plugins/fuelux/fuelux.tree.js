@@ -394,6 +394,40 @@
 					$folder.empty();
 				}
 			});
+		},
+		
+		//获取选中的元素,返回第index个
+		getSelectedByIndex:function(index,callback){
+			var $all = this.$element.find('.tree-selected');
+			var $curEL = $all.eq(index);
+			$curEL.is(".tree-branch-header") && ($curEL = $curEL.parent());
+			callback($curEl.data(),$curEl[0]);
+		},
+		//获取所有选中的元素
+		getSelecteds:function(callback){
+			var datas = [];
+			var els = [];
+			var $all = this.$element.find('.tree-selected');
+			$all.each(function(){
+				var _this = this;
+				var $this = $(this);
+				if($this.is(".tree-branch-header")){
+					$this = $this.parent();
+					_this = $this[0];
+				}
+				datas.push($this.data());
+				els.push(_this);
+			});
+			callback(datas,els);
+		},
+		add:function(parentEl,treeData){
+			
+		},
+		remove:function(parentEl,treeData){
+			
+		},
+		update:function(parentEl,oldTreeData,newTreeData){
+			
 		}
 	};
 
