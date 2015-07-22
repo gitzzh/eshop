@@ -431,17 +431,14 @@
 				this.append(null,treeData);
 			else{
 				if($el.is(".tree-branch")){
-					if($el.find('.'+$.trim(this.options['open-icon'].replace(/(\s+)/g, '.'))).length){
+					if($el.is(".tree-open")){
 						this.append($el,treeData);
-					}else if($el.find('.'+$.trim(this.options['close-icon'].replace(/(\s+)/g, '.'))).length){
+					}else{
 						$el.find(".tree-branch-children").children().length && this.append($el,treeData);
-						$el.find(".icon-folder").trigger("click.fu.tree")
+						$el.find("> .tree-branch-header .icon-folder").trigger("click.fu.tree")
 					}
 				}else if($el.is(".tree-item")){
-					var $parent = $el.parent();
-					var data = $el.data();
-					data["type"] = "folder"
-					var $entity = this.createElement(data);
+					var $entity = this.createfolder($el.data());
 					$el.replaceWith($entity);
 					this.append($entity,treeData);
 					$entity.find(".icon-folder").trigger("click.fu.tree")
@@ -450,20 +447,31 @@
 		},
 		remove:function($el,treeData){
 			if($el && $el.length){
-				$parent = $el.parent();
+				var $parent = $el.parent();
 				$el.remove();
 				if(!$parent.is(".tree") && !$parent.children().length){
 					var $folder = $parent.parent();
-					var data = $folder.data();
-					data["type"] = "item";
-					$folder.replaceWith(this.createElement(data));
+					$folder.replaceWith(this.createItem($folder.data()));
 				}
 			}
 		},
 		createfolder:function(data){
-			
+			data["type"] = "folder";
+			var $entity;
+			$entity = this.$element.find('[data-template=treebranch]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+			$entity.find('.tree-branch-name > .tree-label').html(data.text || data.name);
+			$entity.data(data);
+			return $entity;
 		},
-		createElement:function(data){
+		createItem:function(data){
+			data["type"] = "item";
+			var $entity;
+			$entity = this.$element.find('[data-template=treeitem]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+			$entity.find('.tree-item-name > .tree-label').html(data.text || data.name);
+			$entity.data(data);
+			return $entity;
+		},
+		/*createElement:function(data){
 			var $entity;
 			if(data["type"] === "item"){
 				$entity = this.$element.find('[data-template=treeitem]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
@@ -474,8 +482,8 @@
 			}
 			$entity.data(data);
 			return $entity;
-		},
-		update:function($el,newData){
+		},*/
+		update:function($el,treeData){
 			
 		},
 		append:function($parent,treeData){

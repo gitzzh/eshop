@@ -14,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.eshop.interceptor.PassportInterceptor;
+
 /**
  * Spring MVC配置
  */
@@ -44,7 +46,7 @@ public class DispatcherConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-    	//registry.addInterceptor(new PassportInterceptor());
+    	registry.addInterceptor(new PassportInterceptor());
         super.addInterceptors(registry);
     }
 
