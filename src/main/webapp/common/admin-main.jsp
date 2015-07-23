@@ -11,7 +11,7 @@ request.setAttribute("assets", DomainUtils.getAssets());
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="csrf_timeout_in_seconds">
 <link href="${assets}/public/css/bootstrap.min.css" rel="stylesheet">
-<link href="${assets}/public/css/ace.min.css" rel="stylesheet">
+<link href="${assets}/public/css/ace.min.css" rel="stylesheet" class="ace-main-stylesheet" id="main-ace-style">
 <link href="${assets}/public/css/font-awesome.min.css" rel="stylesheet">
 <link href="${assets}/public/css/default.css" rel="stylesheet">
 
