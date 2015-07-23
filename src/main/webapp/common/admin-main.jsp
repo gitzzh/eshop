@@ -13,7 +13,7 @@ request.setAttribute("assets", DomainUtils.getAssets());
 <link href="${assets}/public/css/bootstrap.min.css" rel="stylesheet">
 <link href="${assets}/public/css/ace.min.css" rel="stylesheet">
 <link href="${assets}/public/css/font-awesome.min.css" rel="stylesheet">
-<link href="${assets}/public/css/default.css" rel="stylesheet">
+<link href="${assets}/css/admin-default.css" rel="stylesheet">
 
 <script src="${assets}/seajs/2.2.1/sea.js?v=${versionCode}"></script>
 <script src="${assets}/seajs/2.2.1/config.js?v=${versionCode}"></script>

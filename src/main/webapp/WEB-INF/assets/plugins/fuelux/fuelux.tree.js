@@ -395,7 +395,16 @@
 				}
 			});
 		},
-		
+		//根据属性获取第一个树元素
+		getFirstByAttr:function(name,value,callback){
+			var returnData,returnEl;
+			var $el = this.$element.find(".tree-item,.tree-branch").filter("["+name+"='"+value+"']");
+			if($el.length){
+				returnData = $el.eq(0).data();
+				returnEl = $el.eq(0)[0];
+			}
+			callback.apply(this,[returnData,returnEl]);
+		},
 		//获取选中的元素,返回第index个
 		getSelectedByIndex:function(index,callback){
 			var $all = this.$element.find('.tree-selected');
@@ -461,6 +470,35 @@
 			$entity = this.$element.find('[data-template=treebranch]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
 			$entity.find('.tree-branch-name > .tree-label').html(data.text || data.name);
 			$entity.data(data);
+			// add attributes to tree-branch or tree-item
+			var attr = data['attr'] || data.dataAttributes || [];
+			$.each(attr, function(key, value) {
+				switch (key) {
+					case 'cssClass':
+					case 'class':
+					case 'className':
+						$entity.addClass(value);
+						break;
+					
+					// allow custom icons
+					case 'data-icon':
+						$entity.find('.icon-item').removeClass().addClass('icon-item ' + value);
+						$entity.attr(key, value);
+						break;
+
+					// ARIA support
+					case 'id':
+						$entity.attr(key, value);
+						$entity.attr('aria-labelledby', value + '-label');
+						$entity.find('.tree-branch-name > .tree-label').attr('id', value + '-label');
+						break;
+
+					// id, style, data-*
+					default:
+						$entity.attr(key, value);
+						break;
+				}
+			});
 			return $entity;
 		},
 		createItem:function(data){
@@ -469,6 +507,35 @@
 			$entity = this.$element.find('[data-template=treeitem]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
 			$entity.find('.tree-item-name > .tree-label').html(data.text || data.name);
 			$entity.data(data);
+			// add attributes to tree-branch or tree-item
+			var attr = data['attr'] || data.dataAttributes || [];
+			$.each(attr, function(key, value) {
+				switch (key) {
+					case 'cssClass':
+					case 'class':
+					case 'className':
+						$entity.addClass(value);
+						break;
+					
+					// allow custom icons
+					case 'data-icon':
+						$entity.find('.icon-item').removeClass().addClass('icon-item ' + value);
+						$entity.attr(key, value);
+						break;
+
+					// ARIA support
+					case 'id':
+						$entity.attr(key, value);
+						$entity.attr('aria-labelledby', value + '-label');
+						$entity.find('.tree-branch-name > .tree-label').attr('id', value + '-label');
+						break;
+
+					// id, style, data-*
+					default:
+						$entity.attr(key, value);
+						break;
+				}
+			});
 			return $entity;
 		},
 		/*createElement:function(data){

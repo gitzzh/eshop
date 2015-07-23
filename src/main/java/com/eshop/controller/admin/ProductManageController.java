@@ -78,7 +78,7 @@ public class ProductManageController extends BaseController {
 	@RequestMapping(value = "/producttypesave", method = RequestMethod.POST)
 	@ResponseBody
 	Object productTypeSave(Integer id, @RequestParam(required = true) String name,
-			@RequestParam(required = true) String params, Integer parentId) {
+			String params, Integer parentId) {
 		int status = 0;
 		ProductType productType = null;
 		if(id != null){
@@ -90,13 +90,15 @@ public class ProductManageController extends BaseController {
 		productType.setParams(params);
 		if(parentId != null){
 			ProductType parent = new ProductType();
-			parent.setParent(parent);
+			parent.setId(parentId);
 			productType.setParent(parent);
 		}
 		productTypeService.saveOrUpdate(productType);
 		status = 1;
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("status", status);
+		model.put("entity", productType);
+		model.put("parentId", parentId);
 		return model;
 	}
 }
