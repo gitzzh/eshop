@@ -395,7 +395,16 @@
 				}
 			});
 		},
-		
+		//根据属性获取第一个树元素
+		getFirstByAttr:function(name,value,callback){
+			var returnData,returnEl;
+			var $el = this.$element.find(".tree-item,.tree-branch").filter("["+name+"='"+value+"']");
+			if($el.length){
+				returnData = $el.eq(0).data();
+				returnEl = $el.eq(0)[0];
+			}
+			callback.apply(this,[returnData,returnEl]);
+		},
 		//获取选中的元素,返回第index个
 		getSelectedByIndex:function(index,callback){
 			var $all = this.$element.find('.tree-selected');
@@ -431,17 +440,14 @@
 				this.append(null,treeData);
 			else{
 				if($el.is(".tree-branch")){
-					if($el.find('.'+$.trim(this.options['open-icon'].replace(/(\s+)/g, '.'))).length){
+					if($el.is(".tree-open")){
 						this.append($el,treeData);
-					}else if($el.find('.'+$.trim(this.options['close-icon'].replace(/(\s+)/g, '.'))).length){
+					}else{
 						$el.find(".tree-branch-children").children().length && this.append($el,treeData);
-						$el.find(".icon-folder").trigger("click.fu.tree")
+						$el.find("> .tree-branch-header .icon-folder").trigger("click.fu.tree")
 					}
 				}else if($el.is(".tree-item")){
-					var $parent = $el.parent();
-					var data = $el.data();
-					data["type"] = "folder"
-					var $entity = this.createElement(data);
+					var $entity = this.createfolder($el.data());
 					$el.replaceWith($entity);
 					this.append($entity,treeData);
 					$entity.find(".icon-folder").trigger("click.fu.tree")
@@ -450,20 +456,89 @@
 		},
 		remove:function($el,treeData){
 			if($el && $el.length){
-				$parent = $el.parent();
+				var $parent = $el.parent();
 				$el.remove();
 				if(!$parent.is(".tree") && !$parent.children().length){
 					var $folder = $parent.parent();
-					var data = $folder.data();
-					data["type"] = "item";
-					$folder.replaceWith(this.createElement(data));
+					$folder.replaceWith(this.createItem($folder.data()));
 				}
 			}
 		},
 		createfolder:function(data){
-			
+			data["type"] = "folder";
+			var $entity;
+			$entity = this.$element.find('[data-template=treebranch]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+			$entity.find('.tree-branch-name > .tree-label').html(data.text || data.name);
+			$entity.data(data);
+			// add attributes to tree-branch or tree-item
+			var attr = data['attr'] || data.dataAttributes || [];
+			$.each(attr, function(key, value) {
+				switch (key) {
+					case 'cssClass':
+					case 'class':
+					case 'className':
+						$entity.addClass(value);
+						break;
+					
+					// allow custom icons
+					case 'data-icon':
+						$entity.find('.icon-item').removeClass().addClass('icon-item ' + value);
+						$entity.attr(key, value);
+						break;
+
+					// ARIA support
+					case 'id':
+						$entity.attr(key, value);
+						$entity.attr('aria-labelledby', value + '-label');
+						$entity.find('.tree-branch-name > .tree-label').attr('id', value + '-label');
+						break;
+
+					// id, style, data-*
+					default:
+						$entity.attr(key, value);
+						break;
+				}
+			});
+			return $entity;
 		},
-		createElement:function(data){
+		createItem:function(data){
+			data["type"] = "item";
+			var $entity;
+			$entity = this.$element.find('[data-template=treeitem]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
+			$entity.find('.tree-item-name > .tree-label').html(data.text || data.name);
+			$entity.data(data);
+			// add attributes to tree-branch or tree-item
+			var attr = data['attr'] || data.dataAttributes || [];
+			$.each(attr, function(key, value) {
+				switch (key) {
+					case 'cssClass':
+					case 'class':
+					case 'className':
+						$entity.addClass(value);
+						break;
+					
+					// allow custom icons
+					case 'data-icon':
+						$entity.find('.icon-item').removeClass().addClass('icon-item ' + value);
+						$entity.attr(key, value);
+						break;
+
+					// ARIA support
+					case 'id':
+						$entity.attr(key, value);
+						$entity.attr('aria-labelledby', value + '-label');
+						$entity.find('.tree-branch-name > .tree-label').attr('id', value + '-label');
+						break;
+
+					// id, style, data-*
+					default:
+						$entity.attr(key, value);
+						break;
+				}
+			});
+			return $entity;
+		},
+		/*createElement:function(data){
 			var $entity;
 			if(data["type"] === "item"){
 				$entity = this.$element.find('[data-template=treeitem]:eq(0)').clone().removeClass('hide').removeAttr('data-template');
@@ -474,8 +549,8 @@
 			}
 			$entity.data(data);
 			return $entity;
-		},
-		update:function($el,newData){
+		},*/
+		update:function($el,treeData){
 			
 		},
 		append:function($parent,treeData){
