@@ -9,9 +9,6 @@
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<jsp:include page="/common/admin-main.jsp" />
-		<script>
-			seajs.use("js/product/typemanage");
-		</script>
 	</head> 
 
 	<body class="no-skin">
@@ -118,4 +115,7 @@
 		</div>
 		<!-- /.main-container -->
 	</body>
+	<script>
+		seajs.use("js/product/typemanage");
+	</script>
 </html>
