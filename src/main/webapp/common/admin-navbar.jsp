@@ -57,7 +57,7 @@
 								</li> -->
 
 								<li>
-									<a href="profile.html">
+									<a href="javascript:void(0);">
 										<i class="ace-icon fa fa-user"></i>
 										用户信息
 									</a>

@@ -10,4 +10,5 @@ import com.eshop.vo.ProductTypeVO;
  */
 public interface ProductTypeService extends BaseService<ProductType, Integer> {
 	 List<ProductTypeVO> getProductTypeVOByParentId(Integer parentId);
+	 void deleteOwnAndChildren(Integer id);
 }

@@ -13,12 +13,67 @@ define(function(require, exports, module) {
 				this.add(el == null ? null : $(el) ,{text: 'Cats', type: 'item'});
 			});
 		});
-		
-		$("#remove_but").click(function(e){
+		*/
+		$("#edit").click(function(e){
 			$('#tree1').tree("getSelectedByIndex",0,function(treeData,el){
-				el && this.remove($(el));
+				var self = this;
+				if(el){
+					/*var ok = confirm('是否确认删除！')
+					if(ok){
+						$.ajax({
+							type: "POST",
+							url: "../adminproduct/deletetype",
+							cache:false,
+							data: {id:treeData.id},
+							success: function(data){
+								if(data.status == 1){
+									self.remove($(el));
+									alert("删除成功！");
+								}else{
+									alert("删除失败！");
+								}
+							},
+							error:function(){
+								alert("操作失败！");
+							}
+						})
+					}*/
+					$("#input_modal").modal("show").find(".modal-title").text("编辑产品类型");
+				}else{
+					alert("请选中产品类型！");
+				}
 			});
-		});*/
+		});
+		
+		$("#delete").click(function(e){
+			$('#tree1').tree("getSelectedByIndex",0,function(treeData,el){
+				var self = this;
+				if(el){
+					var ok = confirm('是否确认删除！')
+					if(ok){
+						$.ajax({
+							   type: "POST",
+							   url: "../adminproduct/deletetype",
+							   cache:false,
+							   data: {id:treeData.id},
+							   success: function(data){
+								   if(data.status == 1){
+									   self.remove($(el));
+									   alert("删除成功！");
+								   }else{
+									   alert("删除失败！");
+								   }
+							   },
+							   error:function(){
+								   alert("操作失败！");
+							   }
+							 })
+					}
+				}else{
+					alert("请选中产品类型！");
+				}
+			});
+		});
 		
 		$("#plus").click(function(e){
 			var $form = $("#input_modal").find("form");

@@ -16,7 +16,7 @@
 <div class="container">
 		<form class="form-signin" id="myForm" onsubmit="return false;">
 			<h3 class="form-signin-heading">登录您的账号</h3>
-			<div class="alert alert-danger form-error none">
+			<div class="alert alert-danger form-error hide">
 				<!-- <a href="#" class="close" data-dismiss="alert" aria-hidden="true">
 			      &times;
 			   	</a> -->
@@ -24,7 +24,7 @@
 			</div>
 			<label for="account" class="sr-only">Email address</label> <input type="text" name="account" class="form-control" placeholder="登录名" autofocus>
 			<label for="password" class="sr-only">Password</label> <input type="password" name="password" class="form-control" placeholder="密码" >
-			<div class="none verify">
+			<div class="hide verify">
 				<input type="text" name="code" class="form-control" placeholder="验证码" ><img src="#" id="verifyImage"><a id="changeVerifyImage">换一张</a>
 			</div>
 			<div class="checkbox">

@@ -26,7 +26,7 @@ public class ProductManageController extends BaseController {
 	
 	
 	/**
-	 * 去产品类型管理页面
+	 * 加载产品类型数据
 	 * @param id
 	 * @return
 	 */
@@ -40,6 +40,21 @@ public class ProductManageController extends BaseController {
 		return model;
 	}
 	
+	/**
+	 * 删除产品类型
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/deletetype")
+	@ResponseBody
+	Object deleteType(@RequestParam(required = true) Integer id) {
+		Map<String, Object> model = new HashMap<>();
+		productTypeService.deleteOwnAndChildren(id);
+		model.put("status", 1);
+		model.put("id", id);
+		return model;
+	}
+	
 	
 	/**
 	 * 去产品类型管理页面
@@ -50,20 +65,6 @@ public class ProductManageController extends BaseController {
 	String typeManage() {
 		
 		return "product/typemanage";
-	}
-	
-	
-	/**
-	 * 去产品类型输入页面
-	 * @param id
-	 * @return
-	 */
-	@RequestMapping(value = "/producttypeinput")
-	String productTypeInput(Integer id,Map<String, Object> model) {
-		if(id != null){
-			model.put("productType", productTypeService.searchById(id));
-		}
-		return "product/producttypeinput";
 	}
 	
 	/**

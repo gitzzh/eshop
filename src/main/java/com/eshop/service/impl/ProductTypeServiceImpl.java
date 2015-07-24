@@ -23,4 +23,9 @@ public class ProductTypeServiceImpl extends
 	public List<ProductTypeVO> getProductTypeVOByParentId(Integer parentId) {
 		return productTypeDAO.findProductTypeVOByParentId(parentId);
 	}
+	
+	@Override
+	public void deleteOwnAndChildren(Integer id) {
+		productTypeDAO.deleteOwnAndChildren(id);
+	}
 }

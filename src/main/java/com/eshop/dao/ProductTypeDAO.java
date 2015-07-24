@@ -11,4 +11,6 @@ import com.eshop.vo.ProductTypeVO;
 public interface ProductTypeDAO extends BaseDAO<ProductType, Integer> {
 
    List<ProductTypeVO> findProductTypeVOByParentId(Integer parentId);
+   
+   void deleteOwnAndChildren(Integer id);
 }
