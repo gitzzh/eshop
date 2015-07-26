@@ -76,20 +76,11 @@
 							<h4 class="modal-title"><!-- 模态框（Modal）标题 --></h4>
 						</div>
 						<div class="modal-body">
-							<!-- <table class="table">
-								<tr>
-									<td align="right">名称</td>
-									<td><input type="text" name="name" /></td>
-								</tr>
-								<tr class="hide">
-									<td align="right">所属类型</td>
-									<td>所属类型</td>
-								</tr>
-							</table> -->
 							<form id="myForm" role="form" class="form-horizontal">
 								<div class="form-group">
 							 		<label for="name" class="col-sm-2 control-label">名称</label>
 							 		<div class="col-sm-10">
+							 			<input type="hidden" name="id" value="">
 							 			<input type="text" name="name" placeholder="请输入名称">
 							 		</div>
 							 	</div>

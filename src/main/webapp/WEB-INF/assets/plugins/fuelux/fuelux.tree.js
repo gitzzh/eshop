@@ -551,7 +551,36 @@
 			return $entity;
 		},*/
 		update:function($el,treeData){
-			
+			$el.data(treeData);
+			$el.find('.tree-item-name > .tree-label').html(treeData.text || treeData.name);
+			var attr = treeData['attr'] || treeData.dataAttributes || [];
+			$.each(attr, function(key, value) {
+				switch (key) {
+					case 'cssClass':
+					case 'class':
+					case 'className':
+						$el.addClass(value);
+						break;
+					
+					// allow custom icons
+					case 'data-icon':
+						$el.find('.icon-item').removeClass().addClass('icon-item ' + value);
+						$el.attr(key, value);
+						break;
+
+					// ARIA support
+					case 'id':
+						$el.attr(key, value);
+						$el.attr('aria-labelledby', value + '-label');
+						$el.find('.tree-branch-name > .tree-label').attr('id', value + '-label');
+						break;
+
+					// id, style, data-*
+					default:
+						$el.attr(key, value);
+						break;
+				}
+			});
 		},
 		append:function($parent,treeData){
 			var self =this;

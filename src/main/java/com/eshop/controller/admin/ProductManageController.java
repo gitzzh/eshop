@@ -96,10 +96,15 @@ public class ProductManageController extends BaseController {
 		}
 		productTypeService.saveOrUpdate(productType);
 		status = 1;
+		ProductType returnEntity = new ProductType();
+		returnEntity.setId(productType.getId());
+		returnEntity.setName(productType.getName());
+		returnEntity.setParams(productType.getParams());
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("status", status);
-		model.put("entity", productType);
+		model.put("returnEntity", returnEntity);
 		model.put("parentId", parentId);
+		model.put("id", id);
 		return model;
 	}
 }
