@@ -33,7 +33,7 @@ define(function(require, exports, module) {
 			},
 			submitHandler: function (form) {
 				form.submit();
-			},
+			}
 		});
 		
 		
