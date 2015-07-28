@@ -28,17 +28,27 @@
 				<div class="main-content-inner">
 					<!-- /section:basics/content.breadcrumbs -->
 					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								产品管理
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									商品管理
+								</small>
+							</h1>
+						</div>
 						<div class="row">
 							<div class="col-xs-12">
 							
 								<table class="table table-hover">
 									<thead>
-										<tr>
+										<tr align="center">
 											<td>编号</td>
 											<td>名称</td>
 											<td>成本</td>
 											<td>售价</td>
 											<td>状态</td>
+											<td>操作</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -48,7 +58,19 @@
 												<td>${var.name }</td>
 												<td><fmt:formatNumber value="${var.cost }" pattern="#.##" /></td>
 												<td><fmt:formatNumber value="${var.price }" pattern="#.##" /></td>
-												<td>${var.status == 1 ? '上架' : '下架' }</td>
+												<td>
+													<c:choose>
+														<c:when test="${var.status == 1 }">
+															<span class="label label-success">上架</span>
+														</c:when>
+														<c:otherwise>
+															<span class="label label-warning">下架</span>
+														</c:otherwise>
+													</c:choose>
+												</td>
+												<td>
+													<a>编辑</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
