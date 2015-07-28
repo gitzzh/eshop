@@ -11,7 +11,9 @@ seajs.config({
 		 "ace-elements.min":"public/js/ace-elements.min.js",
 		 "fuelux.tree":"plugins/fuelux/fuelux.tree.js",
 		 "kkpager":"plugins/kkpager/js/kkpager.min.js",
-		 "paging":"public/js/paging.js"
+		 "paging":"public/js/paging.js",
+		 "jquery.validate":"plugins/jquery-validation-1.14.0/jquery.validate.min.js",
+		 "jquery.validate_zh":"plugins/jquery-validation-1.14.0/messages_zh.min.js"
     },  
     preload: ["jquery"],
     map: [

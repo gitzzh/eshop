@@ -129,4 +129,20 @@ public class ProductManageController extends BaseController {
 		model.put("pageSize", pageSize);
 		return "product/product_list";
 	}
+	
+	/**
+	 * 产品添加/编辑页面
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/productinput")
+	String productList(Integer id,Map<String, Object> model) {
+		Product product = null;
+		if(id != null){
+			product = productService.searchById(id);
+		}
+		model.put("product", product);
+		return "product/product_input";
+	}
 }
