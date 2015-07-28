@@ -15,7 +15,8 @@
 						
 					</li> -->
 					
-					<li <c:if test='${requestScope["javax.servlet.forward.request_uri"].indexOf("/adminproduct/typemanage")>0}'>class="active open"</c:if>>
+					<li <c:if test='${requestScope["javax.servlet.forward.request_uri"].indexOf("/adminproduct/typemanage")>0
+					|| requestScope["javax.servlet.forward.request_uri"].indexOf("/adminproduct/productlist")>0 }'>class="active open"</c:if>>
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list"></i>
 							<span class="menu-text"> 产品管理 </span>
@@ -30,6 +31,14 @@
 								<a href="../adminproduct/typemanage">
 									<i class="menu-icon fa fa-caret-right"></i>
 									产品类目
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li <c:if test='${requestScope["javax.servlet.forward.request_uri"].indexOf("/adminproduct/productlist")>0}'>class="active"</c:if>>
+								<a href="../adminproduct/productlist">
+									<i class="menu-icon fa fa-caret-right"></i>
+									商品管理
 								</a>
 
 								<b class="arrow"></b>

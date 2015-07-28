@@ -9,7 +9,9 @@ seajs.config({
 		 "ace-extra.min" : "public/js/ace-extra.min.js",
 		 "ace.min":"public/js/ace.min.js",
 		 "ace-elements.min":"public/js/ace-elements.min.js",
-		 "fuelux.tree":"plugins/fuelux/fuelux.tree.js"
+		 "fuelux.tree":"plugins/fuelux/fuelux.tree.js",
+		 "kkpager":"plugins/kkpager/js/kkpager.min.js",
+		 "paging":"public/js/paging.js"
     },  
     preload: ["jquery"],
     map: [

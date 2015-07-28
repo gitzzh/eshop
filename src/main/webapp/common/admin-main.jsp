@@ -8,13 +8,11 @@ request.setAttribute("assets", DomainUtils.getAssets());
 %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="csrf_timeout_in_seconds">
 <link href="${assets}/public/css/bootstrap.min.css" rel="stylesheet">
 <link href="${assets}/public/css/ace.min.css" rel="stylesheet" class="ace-main-stylesheet" id="main-ace-style">
 <link href="${assets}/public/css/font-awesome.min.css" rel="stylesheet">
+<link href="${assets}/plugins/kkpager/css/kkpager.css" rel="stylesheet">
 <link href="${assets}/css/admin-default.css" rel="stylesheet">
-
 <script src="${assets}/seajs/2.2.1/sea.js?v=${versionCode}"></script>
 <script src="${assets}/seajs/2.2.1/config.js?v=${versionCode}"></script>
 <script type="text/javascript">

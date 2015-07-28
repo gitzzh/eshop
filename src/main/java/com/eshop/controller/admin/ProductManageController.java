@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eshop.controller.BaseController;
+import com.eshop.entity.Product;
 import com.eshop.entity.ProductType;
+import com.eshop.service.ProductService;
 import com.eshop.service.ProductTypeService;
+import com.eshop.utils.page.ListInfo;
 import com.eshop.vo.ProductTypeVO;
 
 
 @Controller
 @RequestMapping("/adminproduct")
 public class ProductManageController extends BaseController {
+	@Autowired ProductService productService;
 	@Autowired ProductTypeService productTypeService;
 	
 	
@@ -106,5 +110,23 @@ public class ProductManageController extends BaseController {
 		model.put("parentId", parentId);
 		model.put("id", id);
 		return model;
+	}
+	
+	/**
+	 * 产品管理页面
+	 * @param currentPageNO
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/productlist")
+	String productList(@RequestParam(defaultValue = "1") Integer currentPageNO,
+			@RequestParam(defaultValue = "15") Integer pageSize,
+			Map<String, Object> model) {
+		ListInfo<Product> listInfo = productService.searchByMapAlias(null, null, null, null, null, null, null, "createTime", true, currentPageNO, pageSize, null);
+		model.put("listInfo", listInfo);
+		model.put("currentPageNO", currentPageNO);
+		model.put("pageSize", pageSize);
+		return "product/product_list";
 	}
 }

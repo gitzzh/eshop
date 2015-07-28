@@ -1,13 +1,11 @@
-.none{
+/* .none{
 	display: none;
-}
-.table {
-	/* width: auto; */
-}
+} */
+.table {width: auto;}
 
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+/* .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
     padding: 6px 8px;
-}
+} */
 
 
 

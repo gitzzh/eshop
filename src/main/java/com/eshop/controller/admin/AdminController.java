@@ -169,6 +169,6 @@ public class AdminController extends BaseController{
 	
 	@RequestMapping(value = "/home")
 	String home(){
-		return "/admin/home";
+		return "redirect:/adminproduct/productlist";
 	}
 }

@@ -1,0 +1,78 @@
+﻿#kkpager{
+	clear:both;
+	height:30px;
+	line-height:30px;
+	margin-top:20px;
+	color:#666;
+	font-size:12px;
+}
+#kkpager a{
+	padding:4px 8px;
+	margin:10px 3px;
+	font-size:12px;
+	border:1px solid #666;
+	background-color:#FFF;
+	color:#666;
+	text-decoration:none;
+}
+#kkpager span{
+	font-size:14px;
+}
+#kkpager span.disabled{
+	padding:4px 8px;
+	margin:10px 3px;
+	font-size:12px;
+	border:1px solid #DFDFDF;
+	background-color:#FFF;
+	color:#DFDFDF;
+}
+#kkpager span.curr{
+	padding:4px 8px;
+	margin:10px 3px;
+	font-size:12px;
+	border:1px solid #5e829b;
+	background-color:#5e829b;
+	color:#FFF;
+}
+#kkpager a:hover{
+	background-color:#FFEEE5;
+	border:1px solid #5e829b;
+}
+#kkpager span.normalsize{
+	font-size:12px;
+}
+#kkpager_gopage_wrap{
+	display:inline-block;
+	width:43px;
+	height:25px;
+	border:1px solid #DFDFDF;
+	margin:0px 0px;
+	padding:0px;
+	position:relative;
+	left:0px;
+	top:5px;
+}
+#kkpager_btn_go {
+	width:43px;
+	height:25px;
+	line-height:20px;
+	padding:0px;
+	font-family:"微软雅黑";
+	text-align:center;
+	border:0px;
+	background-color:#5e829b;
+	color:#FFF;
+	position:absolute;
+	left:0px;
+	top:-1px;
+	display:none;font-size:12px;
+}
+#kkpager_btn_go_input{
+	width:41px;margin-top:5px;
+	height:23px;
+	text-align:center;
+	border:0px !important;
+	position:absolute;
+	left:0px;
+	top:-5px; font-size:12px;
+}

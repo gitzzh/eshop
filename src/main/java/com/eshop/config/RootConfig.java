@@ -31,7 +31,7 @@ public class RootConfig {
     public DataSource dataSource() {
         BoneCPDataSource dataSource = new BoneCPDataSource();
         dataSource.setDriverClass("com.mysql.jdbc.Driver");
-        dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/eshop");
+        dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/eshop?useUnicode=true&characterEncoding=UTF-8");
         dataSource.setUsername("root");
         dataSource.setPassword("");
         return  dataSource;

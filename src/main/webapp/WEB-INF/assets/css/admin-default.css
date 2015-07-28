@@ -1,3 +1,4 @@
 @CHARSET "utf-8";
+@IMPORT url("../public/css/default.css");
 /* modal */
 .modal-header .close {font-size: 21px;}
