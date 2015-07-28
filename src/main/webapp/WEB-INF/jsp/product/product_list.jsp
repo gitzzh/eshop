@@ -39,11 +39,20 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
+								<button class="btn btn-sm btn-primary" type="button" onclick="location.href='../adminproduct/productinput'">
+						          <span class="glyphicon glyphicon-plus"></span> 添加商品
+						        </button>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-xs-12">
 							
 								<table class="table table-hover">
 									<thead>
 										<tr align="center">
 											<td>编号</td>
+											<td>创建时间</td>
 											<td>名称</td>
 											<td>成本</td>
 											<td>售价</td>
@@ -55,6 +64,7 @@
 										<c:forEach items="${listInfo.currentList }" var="var">
 											<tr>
 												<td>${var.id }</td>
+												<td><fmt:formatDate value="${var.createTime }" pattern="yyyy-MM-dd" /></td>
 												<td>${var.name }</td>
 												<td><fmt:formatNumber value="${var.cost }" pattern="#.##" /></td>
 												<td><fmt:formatNumber value="${var.price }" pattern="#.##" /></td>
@@ -69,7 +79,8 @@
 													</c:choose>
 												</td>
 												<td>
-													<a>编辑</a>
+													<a href="../adminproduct/productinput?id=${var.id }" title="编辑">编辑</a>
+													<%-- <a href="../adminproduct/productdelete?id=${var.id }" title="删除">删除</a> --%>
 												</td>
 											</tr>
 										</c:forEach>

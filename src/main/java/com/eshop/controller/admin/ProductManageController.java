@@ -1,5 +1,6 @@
 package com.eshop.controller.admin;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import com.eshop.service.ProductService;
 import com.eshop.service.ProductTypeService;
 import com.eshop.utils.page.ListInfo;
 import com.eshop.vo.ProductTypeVO;
+import com.eshop.vo.form.ProductForm;
 
 
 @Controller
@@ -121,7 +123,7 @@ public class ProductManageController extends BaseController {
 	 */
 	@RequestMapping(value = "/productlist")
 	String productList(@RequestParam(defaultValue = "1") Integer currentPageNO,
-			@RequestParam(defaultValue = "15") Integer pageSize,
+			@RequestParam(defaultValue = "10") Integer pageSize,
 			Map<String, Object> model) {
 		ListInfo<Product> listInfo = productService.searchByMapAlias(null, null, null, null, null, null, null, "createTime", true, currentPageNO, pageSize, null);
 		model.put("listInfo", listInfo);
@@ -145,4 +147,33 @@ public class ProductManageController extends BaseController {
 		model.put("product", product);
 		return "product/product_input";
 	}
+	
+	/**
+	 * 保存产品
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/productsave")
+	String productSave(ProductForm form) {
+		Date now = new Date();
+		Product product = form.getProduct();
+		if (product != null) {
+			Product dbProduct = null;
+			if (product.getId() != null)
+				dbProduct = productService.searchById(product.getId());
+			else {
+				dbProduct = new Product();
+				dbProduct.setCreateTime(now);
+			}
+			dbProduct.setUpdateTime(now);
+			dbProduct.setName(product.getName());
+			dbProduct.setCost(product.getCost());
+			dbProduct.setPrice(product.getPrice());
+			dbProduct.setStatus(product.getStatus());
+			productService.saveOrUpdate(dbProduct);
+		}
+		return "redirect:/adminproduct/productlist";
+	}
+	
 }

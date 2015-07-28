@@ -7,8 +7,8 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>添加/编辑商品</title>
-		<meta name="description" content="添加/编辑商品" />
+		<title>${empty product ? '添加' : '编辑' }商品</title>
+		<meta name="description" content="${empty product ? '添加' : '编辑' }商品" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<jsp:include page="/common/admin-main.jsp" />
 	</head> 
@@ -33,7 +33,7 @@
 								产品管理
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									添加/编辑商品
+									${empty product ? '添加' : '编辑' }商品
 								</small>
 							</h1>
 						</div>
@@ -42,12 +42,13 @@
 
 							<div class="widget-box">
 								<div class="widget-header widget-header-blue widget-header-flat">
-									<h4 class="widget-title lighter">New Item Wizard</h4>
+									<h4 class="widget-title lighter">请填写下面表单</h4>
 								</div>
 
 								<div class="widget-body">
 									<div class="widget-main">
-										<form id="myForm" role="form" class="form-horizontal">
+										<form class="form-horizontal" id="myForm" role="form" action="../adminproduct/productsave">
+											<input type="hidden" name="product.id" value="${product.id }">
 											<div class="form-group">
 												<label for="name"
 													class="col-sm-2 control-label no-padding-right">名称：</label>
@@ -77,10 +78,10 @@
 													class="col-sm-2 control-label no-padding-right">状态：</label>
 												<div class="col-sm-10">
 													<label class="checkbox-inline"> <input type="radio"
-														name="product.status" checked="checked" value="1">
+														name="product.status" <c:if test="${empty product.status || product.status == 1 }">checked="checked"</c:if> value="1">
 														上架
 													</label> <label class="checkbox-inline"> <input
-														type="radio" name="product.status" value="0"> 下架
+														type="radio" name="product.status" <c:if test="${product.status == 0 }">checked="checked"</c:if> value="0"> 下架
 													</label>
 												</div>
 											</div>
