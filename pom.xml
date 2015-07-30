@@ -122,11 +122,11 @@
 			<version>3.12</version>
 		</dependency> -->
 
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.qiniu</groupId>
 			<artifactId>qiniu-java-sdk</artifactId>
 			<version>7.0.0</version>
-		</dependency> -->
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -134,7 +134,7 @@
 			<version>4.12</version>
 		</dependency>
 	</dependencies>
-	<!-- <build>
+	<build>
 	<plugins>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
@@ -146,7 +146,7 @@
 			</configuration>
 		</plugin>
 	</plugins>
-</build> -->
+</build>
 
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

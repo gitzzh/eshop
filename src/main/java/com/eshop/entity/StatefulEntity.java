@@ -36,11 +36,6 @@ public class StatefulEntity implements BaseEntity {
     @Column(name = "create_time")
     private Date createTime;
 
-    /**
-     * 状态
-     */
-    @Column(name = "status", length = 6)
-    private Integer status;
 
     /**
      * 更新时间
@@ -49,6 +44,12 @@ public class StatefulEntity implements BaseEntity {
     @Column(name = "update_time")
     private Date updateTime;
 
+    /**
+     * 状态
+     */
+    @Column(name = "status", length = 6)
+    private Integer status;
+    
     public Date getCreateTime() {
         return createTime;
     }

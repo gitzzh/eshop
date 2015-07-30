@@ -9,7 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "qiniu_file")
-public class QiniuFile {
+public class QiniuFile extends StatefulEntity{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1451532064400606472L;
+
 	/**
 	 * 主键
 	 */
@@ -17,24 +22,36 @@ public class QiniuFile {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
-
+	
 	/**
-	 * 空间
+	 * 存储空间
 	 */
 	@Column(name = "bucket")
 	private String bucket;
-
+	
 	/**
-	 * key
+	 * 资源名称 key
 	 */
-	@Column(name = "key")
-	private String key;
+	@Column(name = "fkey")
+	private String fkey;
+	
+	/**
+	 * 文件路径
+	 */
+	@Column(name = "path")
+	private String path;
 	
 	/**
 	 * 文件名称
 	 */
 	@Column(name = "name")
 	private String name;
+	
+	/**
+	 * 文件大小
+	 */
+	@Column(name = "size")
+	private Long size;
 
 	public Integer getId() {
 		return id;
@@ -42,6 +59,14 @@ public class QiniuFile {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getBucket() {
@@ -52,22 +77,32 @@ public class QiniuFile {
 		this.bucket = bucket;
 	}
 
-	public String getKey() {
-		return key;
+	public String getFkey() {
+		return fkey;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setFkey(String fkey) {
+		this.fkey = fkey;
 	}
 
-	public String getName() {
-		return name;
+	public String getPath() {
+		return path;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPath(String path) {
+		this.path = path;
 	}
+
+	public Long getSize() {
+		return size;
+	}
+
+	public void setSize(Long size) {
+		this.size = size;
+	}
+
 	
+
 	
 	
 }
