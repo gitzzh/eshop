@@ -21,19 +21,19 @@ public class QiniuFile {
 	/**
 	 * 空间
 	 */
-	@Column(name = "bucket", length = 100)
+	@Column(name = "bucket")
 	private String bucket;
 
 	/**
 	 * key
 	 */
-	@Column(name = "key", length = 100)
+	@Column(name = "key")
 	private String key;
 	
 	/**
 	 * 文件名称
 	 */
-	@Column(name = "name", length = 100)
+	@Column(name = "name")
 	private String name;
 
 	public Integer getId() {
